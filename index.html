@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZETT LAB</title>
+    <link rel="icon" href="/img/icon.png"/>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ffffff 0%, #e3f2fd 100%);
+            color: #000000;
+        }
+
+        header {
+            background: linear-gradient(90deg, #ffffff 0%, #bbdefb 100%);
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 18px;
+            list-style: none;
+            font-weight: bold;
+            color: #1976d2;
+            letter-spacing: 2px;
+        }
+
+        .logo a {
+            text-decoration: none;
+            color: #1976d2;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 16px;
+            text-decoration: none;
+            color: #000000;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #1976d2;
+        }
+
+        .hero {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #000000;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: #333333;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(90deg, #42a5f5 0%, #1976d2 100%);
+            color: white;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(25, 118, 210, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(25, 118, 210, 0.4);
+        }
+
+        .hero-image {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .circuit-icon {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #ffffff 0%, #ffffff 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            color: #1976d2;
+        }
+
+        .circuit-icon img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 10px;
+        }
+
+        .services {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 20px;
+        }
+
+        .services h2 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+            color: #000000;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #1976d2;
+        }
+
+        .service-card p {
+            line-height: 1.6;
+            color: #333333;
+        }
+
+        .service-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .portfolio {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 20px;
+        }
+
+        .portfolio h2 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+            color: #000000;
+        }
+
+        .portfolio-slider {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .portfolio-container {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .portfolio-item {
+            min-width: 100%;
+            background: white;
+            padding: 60px 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            display: none;
+        }
+
+        .portfolio-item.active {
+            display: block;
+        }
+
+        .portfolio-image {
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+        }
+
+        .portfolio-image img {
+            max-width: 150%;
+            max-height: auto;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .portfolio-item h3 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: #1976d2;
+        }
+
+        .portfolio-item p {
+            font-size: 18px;
+            color: #333333;
+            line-height: 1.6;
+        }
+
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #1976d2;
+            color: white;
+            border: none;
+            font-size: 24px;
+            padding: 15px 20px;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: background 0.3s;
+            z-index: 10;
+        }
+
+        .slider-btn:hover {
+            background: #1565c0;
+        }
+
+        .slider-btn.prev {
+            left: -60px;
+        }
+
+        .slider-btn.next {
+            right: -60px;
+        }
+
+        .slider-dots {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .dot {
+            height: 15px;
+            width: 15px;
+            margin: 0 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .dot.active,
+        .dot:hover {
+            background-color: #1976d2;
+        }
+
+        .contact {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 60px 20px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: 36px;
+            margin-bottom: 30px;
+            color: #000000;
+        }
+
+        footer {
+            background: linear-gradient(90deg, #1976d2 0%, #42a5f5 100%);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 80px;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content h1 {
+                font-size: 36px;
+            }
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .slider-btn.prev {
+                left: 10px;
+            }
+
+            .slider-btn.next {
+                right: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="#home">ZETT LAB</a>
+            </div>
+            <ul class="nav-links">
+                <!-- <li><a href="#home">หน้าแรก</a></li> -->
+                <li><a href="#services">Services</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="https://www.instagram.com/zett_lab.tech/">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>สอนเขียนโปรแกรม Arduino & IoT</h1>
+            <p>เรียนรู้การพัฒนาระบบ IoT และการเขียนโปรแกรม Arduino จากผู้เชี่ยวชาญ พร้อมรับทำโปรเจค IoT ที่ตอบโจทย์ทุกความต้องการของคุณ</p>
+            <a href="https://www.instagram.com/zett_lab.tech/" class="cta-button">Get started</a>
+        </div>
+        <div class="hero-image">
+            <div class="circuit-icon"><img src="https://images.unsplash.com/photo-1603732551681-2e91159b9dc2?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt=""></div>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <h2>Services</h2>
+        <div class="service-grid">
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1484417894907-623942c8ee29?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                <h3>🎓 สอน Arduino</h3>
+                <p>เรียนรู้พื้นฐานการเขียนโปรแกรม Arduino ตั้งแต่เริ่มต้นจนถึงขั้นสูง เหมาะสำหรับทุกระดับความสามารถ</p>
+            </div>
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1562877773-a37120131ec4?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                <h3>🌐 สอน IoT</h3>
+                <p>พัฒนาทักษะการสร้างระบบ Internet of Things เชื่อมต่ออุปกรณ์ต่างๆ ผ่านเครือข่ายอินเทอร์เน็ต</p>
+            </div>
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1620634415912-ec5aa1e89d0d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                <h3>💼 รับทำโปรเจค IoT</h3>
+                <p>รับออกแบบและพัฒนาโปรเจค IoT ตามความต้องการ เพื่อธุรกิจและการศึกษา ด้วยทีมงานมืออาชีพ</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="portfolio" id="portfolio">
+        <h2>Portfolio</h2>
+        <div class="portfolio-slider">
+            <button class="slider-btn prev" onclick="moveSlide(-1)">❮</button>
+            <div class="portfolio-container">
+                <div class="portfolio-item active">
+                    <div class="portfolio-image"><img src="https://images.unsplash.com/photo-1614846027182-cecfee3a427b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt=""></div>
+                    <h3>Smart Home System</h3>
+                    <p>ระบบบ้านอัจฉริยะควบคุมผ่าน Mobile App</p>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image"><img src="https://images.unsplash.com/photo-1614846027182-cecfee3a427b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt=""></div>
+                    <h3>Temperature Monitoring</h3>
+                    <p>ระบบตรวจวัดอุณหภูมิและความชื้นแบบ Real-time</p>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image"><img src="https://images.unsplash.com/photo-1614846027182-cecfee3a427b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt=""></div>
+                    <h3>Parking System</h3>
+                    <p>ระบบจัดการที่จอดรถอัตโนมัติ</p>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image"><img src="https://images.unsplash.com/photo-1614846027182-cecfee3a427b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt=""></div>
+                    <h3>Smart Garden</h3>
+                    <p>ระบบรดน้ำต้นไม้อัตโนมัติตามความชื้น</p>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image"><img src="https://images.unsplash.com/photo-1614846027182-cecfee3a427b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt=""></div>
+                    <h3>Security System</h3>
+                    <p>ระบบรักษาความปลอดภัยด้วย RFID และกล้อง</p>
+                </div>
+            </div>
+            <button class="slider-btn next" onclick="moveSlide(1)">❯</button>
+        </div>
+        <div class="slider-dots">
+            <span class="dot active" onclick="currentSlide(0)"></span>
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <h2>พร้อมเริ่มต้นแล้วหรือยัง?</h2>
+        <p style="margin-bottom: 30px; font-size: 18px; color: #333;">ติดต่อเราวันนี้เพื่อสอบถามข้อมูลเพิ่มเติม</p>
+        <a href="https://www.instagram.com/zett_lab.tech/" class="cta-button">ติดต่อเรา</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 ZETT LAB. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let currentIndex = 0;
+        const items = document.querySelectorAll('.portfolio-item');
+        const dots = document.querySelectorAll('.dot');
+
+        function showSlide(index) {
+            items.forEach((item, i) => {
+                item.classList.remove('active');
+                dots[i].classList.remove('active');
+            });
+
+            if (index >= items.length) {
+                currentIndex = 0;
+            } else if (index < 0) {
+                currentIndex = items.length - 1;
+            } else {
+                currentIndex = index;
+            }
+
+            items[currentIndex].classList.add('active');
+            dots[currentIndex].classList.add('active');
+        }
+
+        function moveSlide(direction) {
+            showSlide(currentIndex + direction);
+        }
+
+        function currentSlide(index) {
+            showSlide(index);
+        }
+
+        // Auto slide every 5 seconds
+        setInterval(() => {
+            moveSlide(1);
+        }, 5000);
+    </script>
+</body>
+</html>
